@@ -1,0 +1,142 @@
+.best_Selling {
+    width: 80%;
+    margin: auto;
+}
+
+.best_sell_container{
+    position: "relative"; 
+    top: -15px;
+}
+
+.heading {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#sub_heading {
+    color: white;
+    font-size: 3.5rem;
+}
+
+.button {
+    background-color:#DB4444;
+    color: white;
+    border:none;
+    padding-left:30px;
+    padding-right:30px;
+    border-radius:10px;
+}
+
+.banner {
+    margin-top: 50px;
+    background-color: black;
+    height: 500px;
+    width: 1170px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#counter_container {
+    display: flex; 
+    gap: 30px;
+}
+
+.circle_counter {
+    background-color: white; 
+    border-radius: 50%;
+     width: 70px; 
+    height: 70px; 
+    display: flex;
+    flex-direction:column; 
+    justify-content: center; 
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.actual_time {
+    margin-bottom: -5px;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.timer_head {
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+#img_banner {
+    width: 400px;
+    height: 400px;
+background: radial-gradient(circle at center center,rgb(153, 147, 147) 0%, rgb(0, 0, 0) 70%);
+}
+
+
+.container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: black;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .banner1 {
+    order: 1;
+    text-align: left; /* Center the content */
+  }
+  
+  .img-container {
+    order: 2;
+    text-align: center; /* Center the image */
+  }
+  
+  @media (max-width: 600px) {
+   
+    .container1 {
+        padding: 25px;
+    }
+
+    #heading {
+        font-size: 2.5rem;
+        color: white;
+    }
+
+    img {
+     width: 250px;
+     height: 250px;
+    }
+
+    #img_banner {
+        width: 250px;
+        height: 250px;
+    }
+
+    #counter_container {
+        display: flex; 
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .circle_counter {
+        background-color: rgb(231, 12, 12); 
+        border-radius: 50%;
+         width: 30px; 
+        height: 30px; 
+        padding: 5px;
+    }
+    
+    .actual_time {
+        font-size: 35px;
+    }
+    
+    .timer_head {
+        font-size: 15px;
+    }
+    
+
+  }
+  

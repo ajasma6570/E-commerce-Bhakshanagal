@@ -1,0 +1,20 @@
+#newsletter_email{
+    background-color: black;
+
+}
+
+#newsletter_email::placeholder {
+    color: white; /* Placeholder color */
+}
+
+#icon_send {
+    position: relative;
+    right: 35px;
+    top: 8px;
+}
+
+ion-icon{
+    color: white;
+    font-size: 1.8rem;
+    margin: 5px;
+}

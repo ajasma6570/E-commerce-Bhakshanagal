@@ -1,0 +1,77 @@
+
+#top-header {
+    background-color: black;
+    height: 40px;
+    display: flex;
+    justify-content:  flex-end;
+}
+
+#top-header select {
+    color: white;
+  }
+
+  /* Select arrow color */
+  #top-header select::-ms-expand {
+    color: white;
+  }
+  
+.form-select {
+    background-color: black;
+    border: none;
+    margin-right: 5.5rem;
+    font-size: .8rem;
+    width: 100px;
+    cursor: pointer;
+}
+
+#form-input{ 
+    padding: 17px 14px 17px 14px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+  
+}
+
+#login_btn {
+
+}
+
+#login_btn:hover {
+  background-color: #DB4444;
+}
+
+.cart-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 15rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #00000065;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.35rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+}
+
+.login_dropdown li{
+list-style-type: none;
+color: white;
+}
+
+.login_dropdown li:hover{
+  list-style-type: none;
+  color: rgb(206, 202, 202);
+  }
+  
+
