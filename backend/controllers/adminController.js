@@ -3,7 +3,7 @@ import Product from '../models/ProductModel.js'
 
 const ProductAdd = asyncHandler(async(req, res)=>{ 
 
-    const { name, category, brand, quantity, price, description } = req.body;
+    const { name, category, brand, quantity, price, description,offerpercentage ,offerprice, newProduct} = req.body;
  
     const arrImages = [];
     if (req.files) {
@@ -20,6 +20,7 @@ const ProductAdd = asyncHandler(async(req, res)=>{
             quantity,
             price,
             description,
+         
             productimage: arrImages 
         });
 

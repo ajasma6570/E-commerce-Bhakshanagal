@@ -70,8 +70,24 @@ const productList=asyncHandler(async(req,res)=>{
     
 })
 
+const productView=asyncHandler(async(req,res)=>{
+    const {productid} = req.body
+
+    const product = await Products.findOne({ _id: productid });
+
+    if(product){
+        res.status(201).json({product })
+    }else{
+        res.status(400)
+        throw new Error("something error!!");
+    }
+
+
+})
+
 export {
     registerUser,
     userLogin,
-    productList
+    productList,
+    productView
 } 

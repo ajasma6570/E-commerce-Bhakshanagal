@@ -50,11 +50,18 @@ const productSchema = new mongoose.Schema({
     },
     offerpercentage: {
         type: Number,
-        default: 0,
+        required:true,
+        default:0
       },
     offerprice: {
         type: Number,
-        default: 0,
+        required:true,
+        default:0
+      },
+      newProduct:{
+        type:Boolean,
+        required:true,
+        default:true
       },
 
       reviews: [reviewSchema] 

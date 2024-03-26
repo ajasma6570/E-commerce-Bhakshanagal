@@ -28,9 +28,9 @@ export default function Products(props) {
                   alignItems: "center",
                   position: "relative",
                 }}
-              >
-                <Link href="product.html">
-                    {props.offer &&  <span
+              > 
+                <Link to={`/productview/${props.productId}`}>
+                    {props.offer != 0 &&  <p
                 style={{
                     backgroundColor: "#DB4444",
                     position: "absolute",
@@ -43,9 +43,9 @@ export default function Products(props) {
                 }}
                 >
                 {props.offer}%
-                </span>}
+                </p>}
                
-                {props.new &&  <span
+                {props.new  &&  <span
                 style={{
                     backgroundColor: "#00FF66",
                     position: "absolute",
@@ -81,7 +81,7 @@ export default function Products(props) {
     
     
                   <img
-                    src={`./Assets/${props.image}`}
+                    src={`./Pictures/${props.image}`}
                     alt="Product "
                     class="product"
                     style={{ width: "172px", height: "152px" }}
@@ -118,7 +118,7 @@ export default function Products(props) {
                   <h6>{props.name.toUpperCase()}</h6>
                 </span>
                 <div class="product-price ">
-                    {props.discountPrice && 
+                    {props.discountPrice !=0 && 
                      <span style={{ color: "#DB4444", marginRight: "1rem" }}>
                      ${props.discountPrice}{" "}
                    </span>

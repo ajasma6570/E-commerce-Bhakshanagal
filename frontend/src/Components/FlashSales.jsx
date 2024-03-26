@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./FlashSales.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import axios from 'axios';
 import Carousel from 'react-multi-carousel';
 import Products from "./Products";
 import { Link } from "react-router-dom";
@@ -12,95 +12,19 @@ export default function  FlashSales() {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const [hoveredProductIndex, setHoveredProductIndex] = useState(null);
-  const [rating, setRating] = useState(4)
-  const [rateColor, setColor] = useState(null)
 
+const [products,setProducts] = useState([])
+const [loading,setLoading] = useState(false);
 
-  const [flashSaleProduct,setFlashSaleProduct] = useState([{
-    name:"chilly masala bingo",
-    image:"product111.png",
-    price:"160",
-    discountPrice:"120",
-    offer:"40",
-    rating:4,
-    reviewCount:82
-  },
-  {
-    name:"AK-900 wired keyboard",
-    image:"product111.png",
-    price:"1160",
-    discountPrice:"960",
-    offer:"35",
-    rating:5,
-    reviewCount:162
-  },
-  {
-    name:"chilly masala bingo",
-    image:"product111.png",
-    price:"160",
-    discountPrice:"120",
-    offer:"20",
-    rating:3,
-    reviewCount:36
-  },
-  {
-    name:"chilly masala bingo",
-    image:"product111.png",
-    price:"160",
-    discountPrice:"120",
-    offer:"48",
-    rating:2,
-    reviewCount:25
-  },
-  {
-    name:"chilly masala bingo",
-    image:"product111.png",
-    price:"160",
-    discountPrice:"120",
-    offer:"38",
-    rating:1,
-    reviewCount:12
-  },
-  {
-    name:"AK-900 wired keyboard",
-    image:"product111.png",
-    price:"1160",
-    discountPrice:"960",
-    offer:"35",
-    rating:3,
-    reviewCount:70
-  },
-  {
-    name:"chilly masala bingo",
-    image:"product111.png",
-    price:"160",
-    discountPrice:"120",
-    offer:"20",
-    rating:2,
-    reviewCount:32
-  },
-  {
-    name:"chilly masala bingo",
-    image:"product111.png",
-    price:"160",
-    discountPrice:"120",
-    offer:"48",
-    rating:3,
-    reviewCount:52
-  },
-  {
-    name:"chilly masala bingo",
-    image:"product111.png",
-    price:"160",
-    discountPrice:"120",
-    offer:"38",
-    rating:4,
-    reviewCount:75
+useEffect(()=>{
+  setLoading(true)
+  const getProducts=async()=>{
+    const product = await axios.get('/api/user/listProduct')
+    setProducts(product.data.products);
   }
- 
-])
-
+  setLoading(false)
+  getProducts()
+},[])
 
   // Function to update timer every second
   useEffect(() => {
@@ -154,8 +78,8 @@ export default function  FlashSales() {
     }
   };
 
- const product =   flashSaleProduct.map((item,index)=> <Products name={item.name} image={item.image} price={item.price} discountPrice={item.discountPrice} 
- offer={item.offer} rating={item.rating} reviewCount={item.reviewCount} index={index}
+ const product =   products.map((item,index)=> <Products  productId={item._id} name={item.name} image={item.productimage[0]} price={item.price} discountPrice={item.offerprice} 
+ offer={item.offerpercentage} rating={item.rating} reviewCount={item.reviewCount} index={index}
  /> )
 
   return (

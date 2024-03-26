@@ -1,96 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./ExploreOurProducts.css";
 import Products from "./Products";
+import axios from 'axios'
+import { Link } from "react-router-dom";
 
 export default function ExploreOurProducts() {
     const [hoveredProductIndex, setHoveredProductIndex] = useState(null);
 
-    const [flashSaleProduct, setFlashSaleProduct] = useState([
-      {
-        name: "Chips",
-        image: "product111.png",
-        price: "100",
-        rating: 5,
-        reviewCount: 35
-      },
-      {
-        name: "Chips",
-        image: "explore2.png",
-        price: "100",
-        rating: 5,
-        new:true,
-        reviewCount: 35
-      },
-      {
-        name: "Chips",
-        image: "explore3.png",
-        price: "100",
-        rating: 5,
-        reviewCount: 35
-      },
-      {
-        name: "Chips",
-        image: "explore4.png",
-        price: "100",
-        rating: 5,
-        reviewCount: 35
-      },
-      
-      {
-        name: "Chips",
-        image: "explore4.png",
-        price: "100",
-        rating: 5,
-        reviewCount: 35
-      },
-      {
-        name: "Chips",
-        image: "explore4.png",
-        price: "100",
-        rating: 5,
-        reviewCount: 35
-      },
-      {
-        name: "Chips",
-        image: "explore4.png",
-        price: "100",
-        rating: 5,
-        new:true,
-        reviewCount: 35
-      },
-      {
-        name: "Chips",
-        image: "explore4.png",
-        price: "100",
-        rating: 5,
-        reviewCount: 35
-      },
-      {
-        name: "Chips",
-        image: "explore4.png",
-        price: "100",
-        rating: 5,
-        reviewCount: 35
-      },
-      {
-        name: "Chips",
-        image: "explore4.png",
-        price: "100",
-        rating: 5,
-        new:true,
-        reviewCount: 35
-      },
-      ,
-      {
-        name: "Chips",
-        image: "explore4.png",
-        price: "100",
-        rating: 5,
-        reviewCount: 35
-      },
-    ]);
+    const [products,setProducts] = useState([])
+    const [loading,setLoading] = useState(false);
+    
+    useEffect(()=>{
+      setLoading(true)
+      const getProducts=async()=>{
+        const product = await axios.get('/api/user/listProduct')
+        setProducts(product.data.products);
+      }
+      setLoading(false)
+      getProducts()
+    },[])
+    
   
     const responsive = {
       superLargeDesktop: {
@@ -112,17 +43,17 @@ export default function ExploreOurProducts() {
       },
     };
   
-    const product = flashSaleProduct.map((item, index) => (
+    const product = products.map((item, index) => (
       <Products
-        name={item.name}
-        image={item.image}
-        price={item.price}
-        discountPrice={item.discountPrice}
-        offer={item.offer}
-        rating={item.rating}
-        reviewCount={item.reviewCount}
-        index={index} 
-        new={item.new}
+      productId={item._id}
+      name={item.name}
+      image={item.productimage[0]}
+      price={item.price}
+      discountPrice={item.offerprice}
+      offer={item.offerpercentage}
+      rating={item.rating}
+      reviewCount={item.reviewCount}
+      index={index}
       />
     ));
 
@@ -145,7 +76,7 @@ export default function ExploreOurProducts() {
       <Carousel responsive={responsive} >{product}</Carousel>
 
       <div style={{display:"flex",justifyContent:"center",marginTop:"50px"}}>
-            <button style={{backgroundColor:"#DB4444", border:"none",color:"white",padding:"15px",borderRadius:"10px"}}>View All Products</button>
+            <Link to='ProductList' style={{backgroundColor:"#DB4444", border:"none",color:"white",padding:"15px",borderRadius:"10px"}}>View All Products</Link>
         </div>
 
     </div>

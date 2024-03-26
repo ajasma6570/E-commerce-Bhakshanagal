@@ -1,95 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./BestSellingProducts.css";
 import Products from "./Products";
+import axios from 'axios'
 
 export default function BestSellingProducts() {
-  const [hoveredProductIndex, setHoveredProductIndex] = useState(null);
 
-  const [flashSaleProduct, setFlashSaleProduct] = useState([
-    {
-      name: "Goli Soda",
-      image: "golisoda.png",
-      price: "360",
-      discountPrice: "260",
-      offer: "",
-      rating: 5,
-      reviewCount: 65,
-    },
-    {
-      name: "Cup Cake",
-      image: "cupcake.png",
-      price: "1160",
-      discountPrice: "960",
-      offer: "",
-      rating: 4,
-      reviewCount: 65,
-    },
-    {
-      name: "Chicken Sanwich",
-      image: "chickenSandwich.png",
-      price: "360",
-      discountPrice: "",
-      offer: "",
-      rating: 5,
-      reviewCount: 65,
-    },
-    {
-      name: "Ludoo",
-      image: "ludoo.png",
-      price: "170",
-      discountPrice: "160",
-      offer: "",
-      rating: 4,
-      reviewCount: 65,
-    },
-    {
-      name: "chilly masala bingo",
-      image: "product111.png",
-      price: "160",
-      discountPrice: "120",
-      offer: "38",
-      rating: 1,
-      reviewCount: 12,
-    },
-    {
-      name: "Goli Soda",
-      image: "golisoda.png",
-      price: "360",
-      discountPrice: "260",
-      offer: "",
-      rating: 5,
-      reviewCount: 65,
-    },
-    {
-      name: "Cup Cake",
-      image: "cupcake.png",
-      price: "1160",
-      discountPrice: "960",
-      offer: "",
-      rating: 4,
-      reviewCount: 65,
-    },
-    {
-      name: "Goli Soda",
-      image: "golisoda.png",
-      price: "360",
-      discountPrice: "260",
-      offer: "",
-      rating: 5,
-      reviewCount: 65,
-    },
-    {
-      name: "Cup Cake",
-      image: "cupcake.png",
-      price: "1160",
-      discountPrice: "",
-      offer: "",
-      rating: 4,
-      reviewCount: 65,
-    },
-  ]);
+  const [products,setProducts] = useState([])
+  const [loading,setLoading] = useState(false);
+  
+  useEffect(()=>{
+    setLoading(true)
+    const getProducts=async()=>{
+      const product = await axios.get('/api/user/listProduct')
+      setProducts(product.data.products);
+    }
+    setLoading(false)
+    getProducts()
+  },[])
 
   const responsive = {
     superLargeDesktop: {
@@ -111,13 +40,14 @@ export default function BestSellingProducts() {
     },
   };
 
-  const product = flashSaleProduct.map((item, index) => (
+  const product = products.map((item, index) => (
     <Products
+    productId={item._id}
       name={item.name}
-      image={item.image}
+      image={item.productimage[0]}
       price={item.price}
-      discountPrice={item.discountPrice}
-      offer={item.offer}
+      discountPrice={item.offerprice}
+      offer={item.offerpercentage}
       rating={item.rating}
       reviewCount={item.reviewCount}
       index={index}
